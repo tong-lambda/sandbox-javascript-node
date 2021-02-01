@@ -4,7 +4,7 @@
   "description": "sandbox for node project",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/tong-lambda/sandbox-typescript/issues"
   },
-  "homepage": "https://github.com/tong-lambda/sandbox-typescript#readme"
+  "homepage": "https://github.com/tong-lambda/sandbox-typescript#readme",
+  "devDependencies": {
+    "mocha": "8.2.1"
+  }
 }
