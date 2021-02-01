@@ -1,0 +1,19 @@
+{
+  "name": "sandbox-typescript",
+  "version": "1.0.0",
+  "description": "sandbox for node project",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tong-lambda/sandbox-typescript.git"
+  },
+  "author": "Tong Zhang",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tong-lambda/sandbox-typescript/issues"
+  },
+  "homepage": "https://github.com/tong-lambda/sandbox-typescript#readme"
+}
