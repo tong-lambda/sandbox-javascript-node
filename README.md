@@ -13,3 +13,4 @@
   - Setup mocha https://mochajs.org/#getting-started
     - Use `npm install --save-dev mocha` instead to install as a development dependency for the project
     - Change script test to `mocha` in package.json to enable `npm test` command
+    - To run tests in watch mode, add `"tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot"` to the script
