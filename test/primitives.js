@@ -17,8 +17,26 @@ describe("Primitives tests", function () {
     it("Should return a number type", function () {
       assert.strictEqual(typeof 999, "number");
     });
-    it("Should return a bigInt", function () {
-      assert.strictEqual(typeof Number.MAX_SAFE_INTEGER, "number");
+    it("Infinity is a number", function () {
+      assert.strictEqual(typeof Infinity, "number");
+    });
+    it("Should return positive Infinity", function () {
+      assert.strictEqual(Number.POSITIVE_INFINITY, Infinity);
+    });
+    it("0 represents both +0 and -0", function () {
+      assert.strictEqual(+0 === -0, true);
+    });
+    it("Should return positive Infinity", function () {
+      assert.strictEqual(42 / 0, Infinity);
+    });
+    it("Should return negative Infinity", function () {
+      assert.strictEqual(Number.NEGATIVE_INFINITY, -Infinity);
+    });
+    it("Should return negative Infinity", function () {
+      assert.strictEqual(-42 / 0, -Infinity);
+    });
+    it("The type of NaN should be NaN", function () {
+      assert.strictEqual(isNaN(Number.NaA), true);
     });
     it("Should convert a number to number", function () {
       assert.strictEqual(Number(999), 999);
@@ -32,6 +50,21 @@ describe("Primitives tests", function () {
     it("Should convert a boolean into a number", function () {
       assert.strictEqual(Number(true), 1);
       assert.strictEqual(Number(false), 0);
+    });
+  });
+
+  describe("BigInts", function () {
+    it("Should return a BigInt type", function () {
+      assert.strictEqual(typeof (2n ** 53n), "bigint");
+    });
+    it("Should return a BigInt type", function () {
+      assert.strictEqual(typeof BigInt(Number.MAX_SAFE_INTEGER), "bigint");
+    });
+    it("BigInt is not strickly equals to a number", function () {
+      assert.strictEqual(0n === 0, false);
+    });
+    it("BigInt is loosely equals to a number", function () {
+      assert.strictEqual(0n == 0, true);
     });
   });
 
