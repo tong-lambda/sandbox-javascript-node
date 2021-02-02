@@ -17,14 +17,14 @@ describe("Primitives tests", function () {
     it("Should return a number type", function () {
       assert.strictEqual(typeof 999, "number");
     });
+    it("0 represents both +0 and -0", function () {
+      assert.strictEqual(+0 === -0, true);
+    });
     it("Infinity is a number", function () {
       assert.strictEqual(typeof Infinity, "number");
     });
     it("Should return positive Infinity", function () {
       assert.strictEqual(Number.POSITIVE_INFINITY, Infinity);
-    });
-    it("0 represents both +0 and -0", function () {
-      assert.strictEqual(+0 === -0, true);
     });
     it("Should return positive Infinity", function () {
       assert.strictEqual(42 / 0, Infinity);
@@ -36,7 +36,7 @@ describe("Primitives tests", function () {
       assert.strictEqual(-42 / 0, -Infinity);
     });
     it("The type of NaN should be NaN", function () {
-      assert.strictEqual(isNaN(Number.NaA), true);
+      assert.strictEqual(isNaN(Number.NaN), true);
     });
     it("Should convert a number to number", function () {
       assert.strictEqual(Number(999), 999);
