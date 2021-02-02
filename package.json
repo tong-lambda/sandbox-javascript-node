@@ -4,7 +4,8 @@
   "description": "sandbox for node project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha"
+    "test": "mocha",
+    "tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot"
   },
   "repository": {
     "type": "git",
