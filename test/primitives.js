@@ -1,5 +1,6 @@
 const assert = require("assert");
-describe("Primitives test", function () {
+
+describe("Primitives tests", function () {
   describe("Booleans", function () {
     it("Should return true", function () {
       assert.strictEqual(true, true);
