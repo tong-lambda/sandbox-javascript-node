@@ -74,7 +74,7 @@ describe("Operators tests", function () {
       assert.strictEqual(x, 101);
       assert.strictEqual(y, 101);
     });
-    it("Postfix--, asign x to y and then c decrements by 1", function () {
+    it("Postfix--, asign x to y and then x decrements by 1", function () {
       let x = 100;
       const y = x--;
       assert.strictEqual(x, 99);
