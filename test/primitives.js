@@ -51,6 +51,9 @@ describe("Primitives tests", function () {
       assert.strictEqual(Number(true), 1);
       assert.strictEqual(Number(false), 0);
     });
+    it("the e syntax", function () {
+      assert.strictEqual(3e5, 300000);
+    });
   });
 
   describe("BigInts", function () {
