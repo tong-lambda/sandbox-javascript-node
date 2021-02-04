@@ -97,7 +97,6 @@ describe("Dates", function () {
   //   This assertion runs no longer than 1 second
   it("Should run Date.now()", function () {
     const start = Date.now();
-    console.log(start);
     assert.strictEqual(Math.floor((Date.now() - start) / 1000), 0);
   });
   it("Should run Date.parse()", function () {
@@ -114,7 +113,94 @@ describe("Dates", function () {
     assert.strictEqual(date3 - date4, 0);
   });
   // Instance Methods
-  it("Should return Date.prototype.getDate()", function () {
+  // Get day of the month, range 1-31
+  it("Should return getDate()", function () {
     assert.strictEqual(birthday.getDate(), 19);
+  });
+  // Get day of week, range 0-4
+  it("Should return getDay()", function () {
+    assert.strictEqual(birthday.getDay(), 3);
+  });
+  it("Should return getFullYear()", function () {
+    assert.strictEqual(birthday.getFullYear(), 2020);
+  });
+  it("Should return getHours()", function () {
+    assert.strictEqual(birthday.getHours(), 23);
+  });
+  it("Should return getMinutes()", function () {
+    assert.strictEqual(birthday.getMinutes(), 15);
+  });
+  // Get the month, range 0-11
+  it("Should return getMonth()", function () {
+    assert.strictEqual(birthday.getMonth(), 7);
+  });
+  it("Should return getSeconds()", function () {
+    assert.strictEqual(birthday.getSeconds(), 30);
+  });
+  // Returns the numeric value of the specified date as the number of milliseconds since January 1, 1970, 00:00:00 UTC.
+  it("Should return getTime()", function () {
+    assert.strictEqual(birthday.getTime(), 1597904130000);
+  });
+  it("Should return getTimezoneOffset()", function () {
+    assert.strictEqual(birthday.getTimezoneOffset() / 60, 7);
+  });
+  it("Should return getUTCDate()", function () {
+    assert.strictEqual(birthday.getUTCDate(), 20);
+  });
+  it("Should return getUTCDay()", function () {
+    assert.strictEqual(birthday.getUTCDay(), 4);
+  });
+  // Usually returns 2-3 digits
+  it("Should return getYear()", function () {
+    assert.strictEqual(birthday.getYear(), 120);
+  });
+  // Usually returns 4 digits
+  it("Should return getFullYear()", function () {
+    assert.strictEqual(birthday.getFullYear(), 2020);
+  });
+  it("Should set the day of the date using setDate()", function () {
+    birthday.setDate(24);
+    assert.strictEqual(birthday.getDate(), 24);
+  });
+  it("Should set the day of the date using setFullYear()", function () {
+    birthday.setFullYear(2021);
+    assert.strictEqual(birthday.getFullYear(), 2021);
+  });
+  it("Should set the day of the date using setMonth()", function () {
+    birthday.setMonth(0);
+    assert.strictEqual(birthday.getMonth(), 0);
+  });
+  it("Should return toDateString()", function () {
+    assert.strictEqual(birthday.toDateString(), "Sun Jan 24 2021");
+  });
+  it("Should return toISOString()", function () {
+    assert.strictEqual(birthday.toISOString(), "2021-01-25T07:15:30.000Z");
+  });
+  it("Should return toJSON()", function () {
+    assert.strictEqual(birthday.toJSON(), "2021-01-25T07:15:30.000Z");
+  });
+  it("Should return toUTCString()", function () {
+    assert.strictEqual(birthday.toUTCString(), "Mon, 25 Jan 2021 07:15:30 GMT");
+  });
+  it("Should return toLocaleDateString()", function () {
+    assert.strictEqual(birthday.toLocaleDateString(), "1/24/2021");
+  });
+  it("Should return toLocaleTimeString()", function () {
+    assert.strictEqual(birthday.toLocaleTimeString(), "11:15:30 PM");
+  });
+  it("Should return toString()", function () {
+    assert.strictEqual(
+      birthday.toString(),
+      "Sun Jan 24 2021 23:15:30 GMT-0800 (Pacific Standard Time)"
+    );
+  });
+  it("Should return toTimeString()", function () {
+    assert.strictEqual(
+      birthday.toTimeString(),
+      "23:15:30 GMT-0800 (Pacific Standard Time)"
+    );
+  });
+  it("Should return valueOf()", function () {
+    assert.strictEqual(birthday.valueOf(), birthday.getTime());
   });
 });
