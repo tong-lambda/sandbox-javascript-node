@@ -99,6 +99,8 @@ describe("Dates", function () {
     const start = Date.now();
     assert.strictEqual(Math.floor((Date.now() - start) / 1000), 0);
   });
+  //It parses a string representation of a date, and returns
+  // the number of milliseconds since January 1, 1970, 00:00:00 UTC
   it("Should run Date.parse()", function () {
     assert.strictEqual(Date.parse(unixTimeZero), 0);
   });
