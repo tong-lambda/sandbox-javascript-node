@@ -3,9 +3,6 @@ const assert = require("assert");
 const a = -8;
 const b = 25;
 
-const unixTimeZero = "01 Jan 1970 00:00:00 GMT";
-const birthday = new Date("August 19, 2020 23:15:30");
-
 describe("Math", function () {
   it("Should return abs(a)", function () {
     assert.strictEqual(Math.abs(a), 8);
@@ -81,6 +78,13 @@ describe("Math", function () {
 });
 
 describe("Dates", function () {
+  const unixTimeZero = "01 Jan 1970 00:00:00 GMT";
+  let birthday;
+
+  beforeEach(function () {
+    birthday = new Date("August 19, 2020 23:15:30");
+  });
+
   it("Should run Date()", function () {
     date1 = new Date("January 1, 2021 03:09:00");
     date2 = new Date("2021-01-01T03:09:00");
@@ -91,6 +95,8 @@ describe("Dates", function () {
     assert.strictEqual(typeof date3, "string");
 
     assert.strictEqual(date1 === date2, false);
+    assert.strictEqual(date1 == date2, false);
+    assert.strictEqual(date1.getTime() === date2.getTime(), true);
     assert.strictEqual(date1 - date2, 0);
   });
   //   Static Methods
@@ -173,19 +179,19 @@ describe("Dates", function () {
     assert.strictEqual(birthday.getMonth(), 0);
   });
   it("Should return toDateString()", function () {
-    assert.strictEqual(birthday.toDateString(), "Sun Jan 24 2021");
+    assert.strictEqual(birthday.toDateString(), "Wed Aug 19 2020");
   });
   it("Should return toISOString()", function () {
-    assert.strictEqual(birthday.toISOString(), "2021-01-25T07:15:30.000Z");
+    assert.strictEqual(birthday.toISOString(), "2020-08-20T06:15:30.000Z");
   });
   it("Should return toJSON()", function () {
-    assert.strictEqual(birthday.toJSON(), "2021-01-25T07:15:30.000Z");
+    assert.strictEqual(birthday.toJSON(), "2020-08-20T06:15:30.000Z");
   });
   it("Should return toUTCString()", function () {
-    assert.strictEqual(birthday.toUTCString(), "Mon, 25 Jan 2021 07:15:30 GMT");
+    assert.strictEqual(birthday.toUTCString(), "Thu, 20 Aug 2020 06:15:30 GMT");
   });
   it("Should return toLocaleDateString()", function () {
-    assert.strictEqual(birthday.toLocaleDateString(), "1/24/2021");
+    assert.strictEqual(birthday.toLocaleDateString(), "8/19/2020");
   });
   it("Should return toLocaleTimeString()", function () {
     assert.strictEqual(birthday.toLocaleTimeString(), "11:15:30 PM");
@@ -193,13 +199,13 @@ describe("Dates", function () {
   it("Should return toString()", function () {
     assert.strictEqual(
       birthday.toString(),
-      "Sun Jan 24 2021 23:15:30 GMT-0800 (Pacific Standard Time)"
+      "Wed Aug 19 2020 23:15:30 GMT-0700 (Pacific Daylight Time)"
     );
   });
   it("Should return toTimeString()", function () {
     assert.strictEqual(
       birthday.toTimeString(),
-      "23:15:30 GMT-0800 (Pacific Standard Time)"
+      "23:15:30 GMT-0700 (Pacific Daylight Time)"
     );
   });
   it("Should return valueOf()", function () {
