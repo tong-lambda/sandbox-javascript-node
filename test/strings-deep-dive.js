@@ -6,8 +6,11 @@ describe("Strings deep dive", function () {
   it("Should return charAt(6)", function () {
     assert.strictEqual(sentence.charAt(6), "i");
   });
-  it("Should return indexOf('dog')", function () {
+  it("Should return the index of the first character of the first match of the search string if found", function () {
     assert.strictEqual(sentence.indexOf("dog"), 16);
+  });
+  it("Should return -1 if the search string not found", function () {
+    assert.strictEqual(sentence.indexOf("cat"), -1);
   });
   it("Should return lastIndexOf('dog')", function () {
     assert.strictEqual(sentence.lastIndexOf("dog"), 40);
