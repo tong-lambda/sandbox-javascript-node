@@ -52,4 +52,20 @@ describe("Strings deep dive", function () {
     assert.strictEqual(sentence.split(" ")[2], "brown");
     assert.strictEqual(newSentence.split(" ")[2], "green");
   });
+  it("Should return search()", function () {
+    // any character that is not a word character or whitespace
+    const regex = /[^\w\s]/g;
+    assert.strictEqual(sentence.search(regex), 43);
+  });
+  it("Should return toLowerCase() and toUpperCase", function () {
+    assert.strictEqual("Cat".toLocaleLowerCase(), "cat");
+    assert.strictEqual("Dog".toLocaleUpperCase(), "DOG");
+  });
+  it("Should return repeat()", function () {
+    const hi = "hi ";
+    assert.strictEqual(`Say hi twice: ${hi.repeat(2)}`, "Say hi twice: hi hi ");
+  });
+  it("Should return trim()", function () {
+    assert.strictEqual("         hello world     ".trim(), "hello world");
+  });
 });
