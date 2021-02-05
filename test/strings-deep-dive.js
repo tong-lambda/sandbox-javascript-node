@@ -57,9 +57,9 @@ describe("Strings deep dive", function () {
     const regex = /[^\w\s]/g;
     assert.strictEqual(sentence.search(regex), 43);
   });
-  it("Should return toLowerCase() and toUpperCase", function () {
-    assert.strictEqual("Cat".toLocaleLowerCase(), "cat");
-    assert.strictEqual("Dog".toLocaleUpperCase(), "DOG");
+  it("Should return toLowerCase() and toUpperCase()", function () {
+    assert.strictEqual("Cat".toLowerCase(), "cat");
+    assert.strictEqual("Dog".toUpperCase(), "DOG");
   });
   it("Should return repeat()", function () {
     const hi = "hi ";
