@@ -212,3 +212,26 @@ describe("Dates", function () {
     assert.strictEqual(birthday.valueOf(), birthday.getTime());
   });
 });
+
+//Exercise: Calculate seconds till next Friday midnight.
+describe("Date Exercise", function () {
+  it("Should return seconds till next Friday.", function () {
+    const now = Date();
+    const day = new Date(now).getDay();
+    const hour = new Date(now).getHours();
+    const min = new Date(now).getMinutes();
+    const second = new Date(now).getSeconds();
+    let diffDay;
+    if (day <= 5) {
+      diffDay = 5 - day;
+    } else {
+      diffDay = 5 - day + 7;
+    }
+    const diffTime =
+      (24 - hour - 1) * 3600 +
+      (60 - min - 1) * 60 +
+      (60 - second) +
+      diffDay * 3600 * 24;
+    console.log(diffTime);
+  });
+});
