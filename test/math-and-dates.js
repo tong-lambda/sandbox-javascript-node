@@ -214,8 +214,8 @@ describe("Dates", function () {
 });
 
 //Exercise: Calculate seconds till next Friday midnight.
-describe.only("Date Exercise", function () {
-  it.only("Should return seconds till next Friday.", function () {
+describe("Date Exercise", function () {
+  it("Should return seconds till next Friday.", function () {
     const now = Date();
     const day = new Date(now).getDay();
     const hour = new Date(now).getHours();
