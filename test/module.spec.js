@@ -15,7 +15,7 @@ describe("Test modules", function () {
     const testSquare = squareArea(6);
     assert.strictEqual(testSquare, 36);
   });
-  it("Should return square area", function () {
+  it("Should return circle area", function () {
     console.log(circleName);
     const testCircle = circleArea(6);
     assert.strictEqual(testCircle, 113.04);
