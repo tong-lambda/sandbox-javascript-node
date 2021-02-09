@@ -1,9 +1,7 @@
-// function calculateArea(length) {
-//   return length * length;
-// }
+const name = "square";
 
 export default function calculateArea(length) {
   return length * length;
 }
 
-// exports = { calculateArea };
+export { name };

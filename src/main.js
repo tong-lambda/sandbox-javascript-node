@@ -1,3 +1,6 @@
-import calculateArea from "./modules/square.js";
+import { default as squareArea } from "./modules/square.js";
+import { default as circleArea } from "./modules/circle.js";
 
-const squqre1 = calculateArea(5);
+export default function calculateTotalArea(length, radius) {
+  return squareArea(length) + circleArea(radius);
+}
