@@ -4,8 +4,8 @@
   "description": "sandbox for node project",
   "main": "index.js",
   "scripts": {
-    "test": "mocha",
-    "tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot"
+    "test": "mocha --require esm",
+    "tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot --require esm"
   },
   "repository": {
     "type": "git",
@@ -19,5 +19,8 @@
   "homepage": "https://github.com/tong-lambda/sandbox-typescript#readme",
   "devDependencies": {
     "mocha": "8.2.1"
+  },
+  "dependencies": {
+    "esm": "3.2.25"
   }
 }
