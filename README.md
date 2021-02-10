@@ -16,4 +16,4 @@
     - Change script test to `mocha` in package.json to enable `npm test` command
     - To run tests in watch mode, add `"tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot"` to the script
 
-- In `package.json`, add `-require esm` to scripts to enable tests to support both ES and commonJS patterns, like `import` and `require`.
+- In `package.json`, add `--require esm` to scripts to enable tests to support both ES and commonJS patterns, like `import` and `require`.
