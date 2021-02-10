@@ -117,3 +117,32 @@ export let createPet = function (name) {
     },
   };
 };
+
+//Arguments object
+export function useArgumentsObject(separator) {
+  // separator will only take the first param
+  let result = "";
+  let i;
+  for (i = 1; i < arguments.length; i++) {
+    result += arguments[i] + separator;
+  }
+  return result;
+}
+
+//Function parameters
+//With default params
+export function useDefaultParams(a, b = 1) {
+  return a * b;
+}
+
+//With rest params
+export function useRestParams(multiplier, ...theArgs) {
+  return theArgs.map((x) => multiplier * x);
+}
+
+//Arrow functions
+// Arrow functions does not have its own this, arguments, super, or new.target
+// and are always anonymus
+export function useArrowFunction(words) {
+  return words.map((s) => s.length);
+}

@@ -12,6 +12,10 @@ import {
   A,
   namingConflict,
   createPet,
+  useArgumentsObject,
+  useDefaultParams,
+  useRestParams,
+  useArrowFunction,
 } from "../src/functions.js";
 import assert from "assert";
 
@@ -81,5 +85,33 @@ describe("Test functions", function () {
     pet.setSex("female");
     assert.strictEqual(pet.getName(), "Oliver");
     assert.strictEqual(pet.getSex(), "female");
+  });
+
+  it("Should return the result of usingArgumentsObject function", function () {
+    const result = useArgumentsObject(", ", "red", "orange", "blue");
+    assert.strictEqual(result, "red, orange, blue, ");
+  });
+
+  it("Should return the result of useDefaultParams function", function () {
+    assert.strictEqual(useDefaultParams(5), 5);
+    assert.strictEqual(useDefaultParams(5, 2), 10);
+  });
+
+  it("Should return the result of useRestParams function", function () {
+    const result = useRestParams(2, 1, 2, 3);
+    assert.strictEqual(result.length, 3);
+    assert.strictEqual(result[0], 2);
+    assert.strictEqual(result[1], 4);
+    assert.strictEqual(result[2], 6);
+  });
+
+  it("Should return the result of useArrowFunction function", function () {
+    const words = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
+    const result = useArrowFunction(words);
+    assert.strictEqual(result.length, 4);
+    assert.strictEqual(result[0], 8);
+    assert.strictEqual(result[1], 6);
+    assert.strictEqual(result[2], 7);
+    assert.strictEqual(result[3], 9);
   });
 });
