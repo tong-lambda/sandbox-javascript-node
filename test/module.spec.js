@@ -1,12 +1,12 @@
 import {
-  default as squareArea,
+  calculateArea as squareArea,
   name as squareName,
 } from "../src/modules/square.js";
 import {
   default as circleArea,
   name as circleName,
 } from "../src/modules/circle.js";
-import calculateTotalArea from "../src/main.js";
+import { calculateTotalArea } from "../src/main.js";
 import assert from "assert";
 
 describe("Test modules", function () {
