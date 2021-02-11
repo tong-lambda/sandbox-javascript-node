@@ -1,4 +1,4 @@
-describe.only("Top level describe", () => {
+describe.skip("Top level describe", () => {
   before(async () => {
     console.log("before", "top level describe");
   });
@@ -148,7 +148,7 @@ describe.only("Top level describe", () => {
   });
 });
 
-describe("top level describe #2", () => {
+describe.skip("top level describe #2", () => {
   it("should ", async () => {
     console.log("test 2");
   });

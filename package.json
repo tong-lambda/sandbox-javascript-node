@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "mocha --require esm",
-    "tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot --require esm"
+    "tw": "mocha --watch --watch-files 'test/**/*.js' --watch-files 'src/**/*.js' --reporter dot --require esm"
   },
   "repository": {
     "type": "git",

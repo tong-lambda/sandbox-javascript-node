@@ -41,12 +41,7 @@ describe("Test functions", function () {
   it("Should return the result of map function", function () {
     const numbers = [-1, 0, 1, 2, 5];
     const result = map(f, numbers);
-    assert.strictEqual(result.length, 5);
-    assert.strictEqual(result[0], -1);
-    assert.strictEqual(result[1], 0);
-    assert.strictEqual(result[2], 1);
-    assert.strictEqual(result[3], 8);
-    assert.strictEqual(result[4], 125);
+    assert.deepStrictEqual(result, [-1, 0, 1, 8, 125]);
   });
 
   it("Should return the result of canAccessGlobalVar function", function () {
@@ -99,19 +94,12 @@ describe("Test functions", function () {
 
   it("Should return the result of useRestParams function", function () {
     const result = useRestParams(2, 1, 2, 3);
-    assert.strictEqual(result.length, 3);
-    assert.strictEqual(result[0], 2);
-    assert.strictEqual(result[1], 4);
-    assert.strictEqual(result[2], 6);
+    assert.deepStrictEqual(result, [2, 4, 6]);
   });
 
   it("Should return the result of useArrowFunction function", function () {
     const words = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
     const result = useArrowFunction(words);
-    assert.strictEqual(result.length, 4);
-    assert.strictEqual(result[0], 8);
-    assert.strictEqual(result[1], 6);
-    assert.strictEqual(result[2], 7);
-    assert.strictEqual(result[3], 9);
+    assert.deepStrictEqual(result, [8, 6, 7, 9]);
   });
 });
