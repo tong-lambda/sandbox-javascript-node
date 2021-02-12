@@ -7,7 +7,7 @@ import {
 } from "../src/flow-control.js";
 import assert from "assert";
 
-describe("Folw control", function () {
+describe("Flow control", function () {
   describe("#block", function () {
     it("Shoud return the result of block", function () {
       assert.strictEqual(block(), 1);
