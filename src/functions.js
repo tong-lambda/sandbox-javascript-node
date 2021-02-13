@@ -146,3 +146,28 @@ export function useRestParams(multiplier, ...theArgs) {
 export function useArrowFunction(words) {
   return words.map((s) => s.length);
 }
+
+export const functionObject = {
+  x: 2,
+  y: 3,
+  arrowFunction: () => {
+    return this.x + this.y;
+  },
+  standardFunction: function () {
+    return this.x + this.y;
+  },
+  arrowThisInheritance: function () {
+    const values = [5, 6];
+    return values.map((v) => v * this.x);
+  },
+  standardThisInheritance: function () {
+    const values = [5, 6];
+    return values.map(function (v) {
+      v * this.x; // this.x is not valid because `this` is not passed down in a standard function
+    });
+  },
+};
+
+export class FunctionClass {
+  standardFunction() {}
+}

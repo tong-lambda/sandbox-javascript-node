@@ -16,6 +16,7 @@ import {
   useDefaultParams,
   useRestParams,
   useArrowFunction,
+  functionObject,
 } from "../src/functions.js";
 import assert from "assert";
 
@@ -101,5 +102,12 @@ describe("Test functions", function () {
     const words = ["Hydrogen", "Helium", "Lithium", "Beryllium"];
     const result = useArrowFunction(words);
     assert.deepStrictEqual(result, [8, 6, 7, 9]);
+  });
+
+  it.only("should demonstrate how this is handled in arrow functions vs standard functions", async () => {
+    assert.strictEqual(functionObject.arrowFunction(), NaN);
+    assert.strictEqual(functionObject.standardFunction(), 5);
+    assert.deepStrictEqual(functionObject.arrowThisInheritance(), [10, 12]);
+    assert.throws(() => functionObject.standardThisInheritance());
   });
 });
