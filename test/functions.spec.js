@@ -17,6 +17,8 @@ import {
   useRestParams,
   useArrowFunction,
   functionObject,
+  variableHoisting as variableHoisting,
+  convertStringToNumbers,
 } from "../src/functions.js";
 import assert from "assert";
 
@@ -104,10 +106,29 @@ describe("Test functions", function () {
     assert.deepStrictEqual(result, [8, 6, 7, 9]);
   });
 
-  it.only("should demonstrate how this is handled in arrow functions vs standard functions", async () => {
+  it("should demonstrate how this is handled in arrow functions vs standard functions", async () => {
     assert.strictEqual(functionObject.arrowFunction(), NaN);
     assert.strictEqual(functionObject.standardFunction(), 5);
     assert.deepStrictEqual(functionObject.arrowThisInheritance(), [10, 12]);
     assert.throws(() => functionObject.standardThisInheritance());
+  });
+});
+
+describe("Variable scope and function hoisting", function () {
+  describe("#variableHosting", function () {
+    it("Should log varialbe x before x is declared.", function () {
+      assert.strictEqual(variableHoisting()(), 6);
+    });
+  });
+
+  describe("Convert string to numbers", function () {
+    describe("#convertStringToNumbers", function () {
+      it("Should return numbers.", function () {
+        assert.deepStrictEqual(convertStringToNumbers("3", "3"), {
+          ingeter: 3,
+          float: 3,
+        });
+      });
+    });
   });
 });

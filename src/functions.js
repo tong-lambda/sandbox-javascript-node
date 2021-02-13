@@ -42,7 +42,7 @@ export const factorial = function fac(n) {
 };
 
 //Closure
-//Function scope local variables change global value
+//Function scope change global var value
 export function getScore() {
   num1 = 100;
   num2 = 600;
@@ -168,6 +168,30 @@ export const functionObject = {
   },
 };
 
-export class FunctionClass {
-  standardFunction() {}
+// export class FunctionClass {
+//   standardFunction() {}
+
+//Variable hosting
+export function variableHoisting() {
+  function something() {
+    return x;
+  }
+  let x = 6;
+  return something;
+}
+
+//Function hosting
+// In the case of functions, only function declarations
+// are hoisted—but not the function expressions.
+function functionDeclaration() {
+  console.log("This is a function declaration.");
+}
+
+let functionExpression = function () {
+  console.log("This is a function expression.");
+};
+//Calling functionExpression() should through TypeError: baz is not a function
+
+export function convertStringToNumbers(a, b) {
+  return { ingeter: parseInt(a), float: parseFloat(b) };
 }
