@@ -17,6 +17,7 @@ import {
   useRestParams,
   useArrowFunction,
   functionObject,
+  FunctionClass,
   variableHoisting as variableHoisting,
   convertStringToNumbers,
 } from "../src/functions.js";
@@ -106,11 +107,19 @@ describe("Test functions", function () {
     assert.deepStrictEqual(result, [8, 6, 7, 9]);
   });
 
-  it("should demonstrate how this is handled in arrow functions vs standard functions", async () => {
+  it("should demonstrate how this is handled in arrow functions vs standard functions in a function object", async () => {
     assert.strictEqual(functionObject.arrowFunction(), NaN);
     assert.strictEqual(functionObject.standardFunction(), 5);
     assert.deepStrictEqual(functionObject.arrowThisInheritance(), [10, 12]);
     assert.throws(() => functionObject.standardThisInheritance());
+  });
+
+  it("should demonstrate how this is handled in arrow functions vs standard functions in a function class", async () => {
+    const functionClass = new FunctionClass();
+    assert.strictEqual(functionClass.arrowFunction(), 5);
+    assert.strictEqual(functionClass.standardFunction(), 5);
+    assert.deepStrictEqual(functionClass.arrowThisInheritance(), [10, 12]);
+    assert.throws(() => functionClass.standardThisInheritance());
   });
 });
 

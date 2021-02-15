@@ -168,8 +168,31 @@ export const functionObject = {
   },
 };
 
-// export class FunctionClass {
-//   standardFunction() {}
+export class FunctionClass {
+  constructor() {
+    this.x = 2;
+    this.y = 3;
+    // this.arrowFunction = () => {
+    //   return this.x + this.y;
+    // };
+  }
+  arrowFunction = () => {
+    return this.x + this.y;
+  };
+  standardFunction() {
+    return this.x + this.y;
+  }
+  arrowThisInheritance() {
+    const values = [5, 6];
+    return values.map((v) => v * this.x);
+  }
+  standardThisInheritance() {
+    const values = [5, 6];
+    return values.map(function (v) {
+      v * this.x; // this.x is not valid because `this` is not passed down in a standard function
+    });
+  }
+}
 
 //Variable hosting
 export function variableHoisting() {
