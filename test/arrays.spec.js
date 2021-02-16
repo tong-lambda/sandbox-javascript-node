@@ -1,13 +1,18 @@
-import {
-  array1,
-  array2,
-  array3,
-  obj1,
-  obj2,
-  fractionalArray1,
-  fractionalArray2,
-} from "../src/arrays.js";
 import assert from "assert";
+
+// A few ways of creating array
+const array1 = [1, 2, 3, 4, 5];
+const array2 = Array(1, 2, 3);
+export const array3 = new Array(1, 2, 3);
+
+//Assign array to a property of an object
+let obj1 = {};
+obj1.prop = [1, 2, 3];
+let obj2 = { prop: [1, 2, 3] };
+
+//Creating array with float/fractional
+const fractionalArray1 = Array.of(9.3);
+const fractionalArray2 = [9.3];
 
 describe("Explore arrays basic", function () {
   it("Should return array1, array2, array3", function () {
@@ -108,5 +113,70 @@ describe("Expore array methods", function () {
   it("Should call lastIndexOf()", function () {
     const array3 = ["a", "a", "a"];
     assert.deepStrictEqual(array3.lastIndexOf("a"), 2);
+  });
+
+  it("Should use common iteration", function () {
+    const colors1 = ["red", "green", "blue"];
+    for (let i = 0; i < colors1.length; i++) {
+      console.log(colors1[i]);
+    }
+  });
+
+  it("Should call forEach()", function () {
+    const colors1 = ["red", "green", "blue"];
+    for (let i = 0; i < colors1.length; i++) {
+      console.log(colors1[i]);
+    }
+  });
+
+  it("Should call forEach() using arrow functions", function () {
+    const colors = ["red", "green", "blue"];
+    colors.forEach((color) => console.log(color));
+  });
+
+  it("Should call map()", function () {
+    const a1 = ["a", "b", "c"];
+    const a2 = a1.map((i) => {
+      return i.toUpperCase();
+    });
+    assert.deepStrictEqual(a2, ["A", "B", "C"]);
+  });
+
+  it("Should call filter()", function () {
+    const a1 = ["a", 10, "b", 20, "c", 30];
+    const a2 = a1.filter((i) => {
+      return typeof i === "number";
+    });
+    assert.deepStrictEqual(a2, [10, 20, 30]);
+  });
+
+  it("Should call every()", function () {
+    function isNumber(value) {
+      return typeof value === "number";
+    }
+    const a1 = [1, 2, 3];
+    assert.strictEqual(a1.every(isNumber), true);
+    const a2 = [1, "2", 3];
+    assert.strictEqual(a2.every(isNumber), false);
+  });
+
+  it("Should call some()", function () {
+    function isNumber(value) {
+      return typeof value === "number";
+    }
+    const a1 = [1, 2, 3];
+    assert.strictEqual(a1.some(isNumber), true);
+    const a2 = [1, "2", 3];
+    assert.strictEqual(a2.some(isNumber), true);
+    const a3 = ["1", "2", "3"];
+    assert.strictEqual(a3.some(isNumber), false);
+  });
+
+  it("Should call reduce()", function () {
+    const a = [10, 20, 30];
+    let total = a.reduce((accomulator, currentValue) => {
+      return accomulator + currentValue;
+    }, 0);
+    assert.strictEqual(total, 60);
   });
 });
