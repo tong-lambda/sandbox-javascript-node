@@ -1,5 +1,4 @@
 import assert from "assert";
-import { SSL_OP_SSLEAY_080_CLIENT_DH_BUG } from "constants";
 
 describe("Loops", function () {
   it("Should use do...while... statement", function () {
