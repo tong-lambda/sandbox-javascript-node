@@ -33,6 +33,10 @@ describe("Set", function () {
     assert.strictEqual(mySet.has(1), true);
     mySet.delete("foo");
     assert.strictEqual(mySet.size, 2);
+
+    const array = [1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 4, 4, 4, 5];
+    const set = new Set(array);
+    assert.deepStrictEqual(set, new Set([1, 2, 3, 4, 5]));
   });
 });
 
