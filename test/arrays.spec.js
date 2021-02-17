@@ -124,9 +124,9 @@ describe("Expore array methods", function () {
 
   it("Should call forEach()", function () {
     const colors1 = ["red", "green", "blue"];
-    for (let i = 0; i < colors1.length; i++) {
-      console.log(colors1[i]);
-    }
+    colors1.forEach(function (color) {
+      console.log(color);
+    });
   });
 
   it("Should call forEach() using arrow functions", function () {
