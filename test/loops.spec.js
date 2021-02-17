@@ -48,4 +48,32 @@ describe("Loops", function () {
     }
     assert.deepStrictEqual(result, [1, 3]);
   });
+
+  //Loop through the properties of an object
+  it("Should use for...in statement", function () {
+    const car = { make: "Ford", model: "Mustang" };
+    let result = "";
+    for (let x in car) {
+      result += car[x] + " ";
+    }
+    assert.strictEqual(result, "Ford Mustang ");
+
+    const arr = [3, 5, 7];
+    arr.foo = "hello";
+    let x = [];
+    for (let i in arr) {
+      x.push(i);
+    }
+    assert.deepStrictEqual(x, ["0", "1", "2", "foo"]);
+  });
+
+  it("Should use for...of statement", function () {
+    const arr = [3, 5, 7];
+    arr.foo = "hello";
+    let x = [];
+    for (let i of arr) {
+      x.push(i);
+    }
+    assert.deepStrictEqual(x, [3, 5, 7]);
+  });
 });
