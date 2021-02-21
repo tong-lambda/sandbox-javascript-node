@@ -17,3 +17,11 @@
     - To run tests in watch mode, add `"tw": "mocha --watch --watch-files 'test/**/*.js' --reporter dot"` to the script
 
 - In `package.json`, add `--require esm` to scripts to enable tests to support both ES and commonJS patterns, like `import` and `require`.
+
+## Regular Expression
+
+- Tools
+  - RegExr: An online tool to learn, build, & test Regular Expressions.
+    https://regexr.com/
+  - Regex Tester: An online regex builder/debugger.
+    https://regex101.com/
