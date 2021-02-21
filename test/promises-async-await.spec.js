@@ -30,6 +30,18 @@ describe("Promises", function () {
     assert.strictEqual(await foo(), 1);
   });
 
+  it("Should handle error in an async function", async function () {
+    async function handleError(shouldThrow) {
+      if (!shouldThrow) {
+        console.log("This is not an error.");
+      } else {
+        throw new Error("Whoops");
+      }
+    }
+
+    assert.rejects(() => handleError(true));
+  });
+
   it("Should use promise.all() with all success cases", async function () {
     let p1 = Promise.resolve(3);
     let p2 = 1337;
