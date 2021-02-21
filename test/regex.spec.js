@@ -2,8 +2,15 @@ import assert from "assert";
 
 describe("RegEx", function () {
   it("Should run exec() success", function () {
+    const regex = /foo*/g;
     const str = "table football, foosball";
-    assert.strictEqual(/foo*/g.exec(str).index, 6);
+    let match = regex.exec(str);
+    let index = [];
+    while (match) {
+      index.push(regex.lastIndex);
+      match = regex.exec(str);
+    }
+    assert.deepStrictEqual(index, [9, 19]);
   });
 
   it("Should run exec() fail", function () {
