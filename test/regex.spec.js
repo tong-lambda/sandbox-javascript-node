@@ -2,23 +2,15 @@ import assert from "assert";
 
 describe("RegEx", function () {
   it("Should run exec() success", function () {
-    const regex = /foo*/g;
     const str = "table football, foosball";
-    let match = regex.exec(str);
-    let index = [];
-    while (match) {
-      index.push(regex.lastIndex);
-      match = regex.exec(str);
-    }
-    assert.deepStrictEqual(index, [9, 19]);
+    assert.strictEqual(/foo*/g.exec(str).index, 6);
   });
 
   it("Should run exec() fail", function () {
-    const regex = /foo*/g;
     const str = "table dog, cat";
-    const match = regex.exec(str);
+    const match = /foo*/g.exec(str);
     assert.deepStrictEqual(match, null);
-    assert.deepStrictEqual(regex.lastIndex, 0);
+    assert.deepStrictEqual(/foo*/g.lastIndex, 0);
   });
 
   it("Should run test()", function () {
@@ -35,16 +27,13 @@ describe("RegEx", function () {
 
   it("Should run match()", function () {
     const paragraph = "The quick brown fox jumps over the lazy dog. It barked.";
-    const regex = /[A-Z]/g;
-    const found = paragraph.match(regex);
+    const found = paragraph.match(/[A-Z]/g);
     assert.deepStrictEqual(found, ["T", "I"]);
   });
 
   it("Should run matchAll()", function () {
-    const regexp = /t(e)(st(\d?))/g;
     const str = "test1test2";
-
-    const array = [...str.matchAll(regexp)];
+    const array = [...str.matchAll(/t(e)(st(\d?))/g)];
     assert.deepStrictEqual(array[0].slice(0, 3), ["test1", "e", "st1"]);
     assert.deepStrictEqual(array[1].slice(0, 3), ["test2", "e", "st2"]);
   });
@@ -52,18 +41,15 @@ describe("RegEx", function () {
   it("Should run replace() and replaceAll()", function () {
     const p = "dog dog dog";
     const p1 = "Dog Dog Dog";
-    const regex = /Dog/i;
-    const regex1 = /dog/g;
     assert.strictEqual(p.replace("dog", "monkey"), "monkey dog dog");
-    assert.strictEqual(p1.replace(regex, "monkey"), "monkey Dog Dog");
-    assert.strictEqual(p.replace(regex1, "monkey"), "monkey monkey monkey");
+    assert.strictEqual(p1.replace(/Dog/i, "monkey"), "monkey Dog Dog");
+    assert.strictEqual(p.replace(/dog/g, "monkey"), "monkey monkey monkey");
   });
 
   it("Should run search()", function () {
     const p = "The car.";
     // any character that is not a word character or whitespace
-    const regex = /[^\w\s]/g;
-    const match = p.search(regex);
+    const match = p.search(/[^\w\s]/g);
     //return the index of that character
     assert.strictEqual(match, 7);
     assert.strictEqual(p[match], ".");
@@ -79,9 +65,8 @@ describe("RegEx", function () {
 
   it("Should run split() with regex", function () {
     const str = "Hi! How are you? Good.";
-    const regex = /[^\w\s]/g;
     //split by punctuations
-    const words = str.split(regex);
+    const words = str.split(/[^\w\s]/g);
     assert.deepStrictEqual(words, ["Hi", " How are you", " Good", ""]);
   });
 });
