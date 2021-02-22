@@ -1,12 +1,9 @@
 import { compareAsc, format, isValid } from "date-fns";
-import assert from "assert";
+import { expect } from "chai";
 
 describe("Explore date-fns", function () {
   it("Should use format()", function () {
-    assert.strictEqual(
-      format(new Date(2014, 1, 11), "yyyy-MM-dd"),
-      "2014-02-11"
-    );
+    expect(format(new Date(2014, 1, 11), "yyyy-MM-dd")).to.equal("2014-02-11");
   });
 
   it("Should use sort()", function () {
@@ -17,11 +14,11 @@ describe("Explore date-fns", function () {
     ];
     dates.sort(compareAsc);
     const years = dates.map((x) => format(x, "yyyy"));
-    assert.deepStrictEqual(years, ["1987", "1989", "1995"]);
+    expect(years).to.deep.equal(["1987", "1989", "1995"]);
   });
 
   it("Should use isValid()", function () {
-    assert.strictEqual(isValid("2021-01-01"), false);
-    assert.strictEqual(isValid(new Date("2021-01-01")), true);
+    expect(isValid("2021-01-01")).to.equal(false);
+    expect(isValid(new Date("2021-01-01"))).to.equal(true);
   });
 });
