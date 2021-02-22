@@ -30,8 +30,8 @@ describe("Promises", function () {
     assert.strictEqual(await foo(), 1);
   });
 
-  it("Should handle error in an async function", async function () {
-    async function handleError(shouldThrow) {
+  it("Async function should return a promise", async function () {
+    async function shouldThrow(shouldThrow) {
       if (!shouldThrow) {
         console.log("This is not an error.");
       } else {
@@ -39,7 +39,19 @@ describe("Promises", function () {
       }
     }
 
-    assert.rejects(() => handleError(true));
+    assert.rejects(() => shouldThrow(true));
+  });
+
+  it("Should handle errors for async function", async function () {
+    async function handleError(shouldThrow) {
+      try {
+        if (handleError) await Promise.reject("Whoops");
+        else return "This is not an error.";
+      } catch (erro) {
+        return "Caught error";
+      }
+    }
+    assert.strictEqual(await handleError(true), "Caught error");
   });
 
   it("Should use promise.all() with all success cases", async function () {
