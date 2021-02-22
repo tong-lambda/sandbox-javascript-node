@@ -22,13 +22,13 @@
   },
   "homepage": "https://github.com/tong-lambda/sandbox-typescript#readme",
   "devDependencies": {
-    "lodash": "4.17.20",
     "mocha": "8.2.1"
   },
   "dependencies": {
     "date-fns": "2.17.0",
     "dateformat": "4.5.1",
     "esm": "3.2.25",
-    "express": "git+https://github.com/visionmedia/express.git"
+    "express": "git+https://github.com/visionmedia/express.git",
+    "lodash": "4.17.21"
   }
 }
