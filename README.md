@@ -33,7 +33,7 @@
   - How to install as a dependency
     `npm intall (-P or --save-prod is optional)`
   - How to install as a dev dependency
-    `npm install - D or --save-dev`
+    `npm install -D or --save-dev`
   - How to install a specific version of a package
     `npm install <package-name>@<version-number>`
   - How to install from a GitHub repository
@@ -45,11 +45,23 @@
 
   - It will delete your node_modules folder to ensure a clean state.
   - It will look in your `package-lock.json` to install all the dependencies with the exact version.
-  - Unlike `npm install`, `npm ci` will never modify your `package-lock.json`. It does however expect a `package-lock.json` file in your project — if you do not have this file, `npm ci` will not work and you have to use `npm install`. instead.
+  - Unlike `npm install`, `npm ci` will never modify your `package-lock.json`. It does however expect a `package-lock.json` file in your project — if you do not have this file, `npm ci` will not work and you have to use `npm install` instead.
 
 - Check outdated packages
 
-  - Run `npm outdated` or `npm outdated <package name>` for a specific pagage
+  - Run `npm outdated` or `npm outdated <package name>` for a specific package
   - Run `npm update` to update the packages
+    - It only works if the version specified in the package.json file is flexible. For example, if the package.json file has a package version specified like this: "express": "^1.3.4", then the ^ signifies that any minor or patch version >= 1.3.4 is acceptable. So if express 1.4.2 and express 2.0.1 had both been released, then npm update would install version 1.4.2.
+      At Lambda School, we have a policy of using exact version numbers for our packages.
 
 - Run `npm repo <package name>` to open package's github url
+
+Ideally we should:
+
+- Run `npm outdated`
+- Run `npm repo <package name>`
+  - Read the changelog for major version bumps.
+  - Read the changelog for minor version bumps for core packages.
+- Run `npm install <package name>@latest`
+  - If it's a good idea to upgrade, then I usually upgrade to the latest version.
+  - Sometimes latest might not be best for a project. specify a version as needed.
