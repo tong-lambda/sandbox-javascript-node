@@ -53,3 +53,24 @@
   - Run `npm update` to update the packages
 
 - Run `npm repo <package name>` to open package's github url
+
+Ideally we should:
+
+- Run `npm outdated`
+- Run `npm repo <package name>`
+  - Read the changelog for major version bumps.
+  - Read the changelog for minor version bumps for core packages.
+- Run `npm install <package name>@latest`
+  - If it's a good idea to upgrade, then I usually upgrade to the latest version.
+  - Sometimes latest might not be best for a project. specify a version as needed.
+
+## Node
+
+- Check the latest version:
+  https://nodejs.org/en/
+- Check the support schedule:
+  https://nodejs.org/en/about/releases/
+  Node 12.X will be supported until Apr 2022.
+- Documentation:
+  - The latest 14.X version https://nodejs.org/dist/latest-v14.x/docs/api/
+  - The doc for 12.X version https://nodejs.org/docs/latest-v12.x/api/
