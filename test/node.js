@@ -48,7 +48,7 @@ describe("Path", function () {
   });
 });
 
-describe.only("File System", function () {
+describe("File System", function () {
   const fileContent = "Hello content!";
   const currentFolder = process.cwd();
   const file1 = currentFolder + "/test-folder/fs_test_file.txt";
@@ -95,7 +95,7 @@ describe.only("File System", function () {
     }
   });
 
-  it.skip("Should use fs.readfile()", function () {
+  it("Should use fs.readfile()", function () {
     fs.readFile(file1, "utf8", (err, data) => {
       if (err) throw err;
       expect(data).to.equal(fileContent);
