@@ -95,27 +95,6 @@ describe.only("File System", function () {
     }
   });
 
-  // it("Should use fs.open()", function () {
-  //   fs.open(file1, "r", (err, fd) => {
-  //     if (err) {
-  //       if (err.code === "ENOENT") {
-  //         console.error("myfile does not exist");
-  //         return;
-  //       }
-
-  //       throw err;
-  //     }
-
-  //     try {
-  //       console.log("Runs here");
-  //       console.log(fd);
-  //     } finally {
-  //       fs.close(fd, (err) => {
-  //         if (err) throw err;
-  //       });
-  //     }
-  //   });
-  // });
   it.skip("Should use fs.readfile()", function () {
     fs.readFile(file1, "utf8", (err, data) => {
       if (err) throw err;
