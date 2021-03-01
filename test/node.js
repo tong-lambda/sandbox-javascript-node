@@ -1,7 +1,9 @@
 import { expect } from "chai";
+import { isArguments } from "lodash";
 let fs = require("fs");
 const os = require("os");
 const path = require("path");
+const process = require("process");
 
 describe("Errors", function () {
   it("Should return error", function () {
@@ -17,7 +19,7 @@ describe("OS", function () {
     expect(os.arch()).to.equal("x64");
   });
   it("Should use os.homedir()", function () {
-    expect(os.homedir()).to.equal("/Users/tongzhang");
+    console.log(os.homedir());
   });
 });
 
@@ -46,15 +48,30 @@ describe("Path", function () {
   });
 });
 
-describe("File System", function () {
-  const file1 =
-    "/Users/tongzhang/lambda/sandbox-javascript-node/test-folder/fs_test_file.txt";
+describe.only("File System", function () {
+  const fileContent = "Hello content!";
+  const currentFolder = process.cwd();
+  const file1 = currentFolder + "/test-folder/fs_test_file.txt";
   const file2 =
     "/Users/tongzhang/lambda/sandbox-javascript-node/test-folder/fs_test_file1.txt";
-  it.skip("Should use fs.rename()", function () {
-    fs.rename(file2, file1, (err) => {
+  beforeEach(function () {
+    fs.appendFile(file1, fileContent, function (err) {
       if (err) throw err;
-      console.log("renamed complete");
+      console.log("Saved!");
+    });
+  });
+  it("Should use fs.rename()", function () {
+    if (!fs.existsSync(file1)) {
+      throw new Error(`File ${file1} does not exist.`);
+    }
+
+    fs.rename(file1, file2, (err) => {
+      if (err) throw err;
+      console.log("Renaming completed.");
+    });
+    fs.unlink(file2, function (err) {
+      if (err) throw err;
+      console.log("file2 deleted!");
     });
   });
 
@@ -78,32 +95,46 @@ describe("File System", function () {
     }
   });
 
-  it("Should use fs.open()", function () {
-    fs.open(file1, "r", (err, fd) => {
-      if (err) {
-        if (err.code === "ENOENT") {
-          console.error("myfile does not exist");
-          return;
-        }
+  // it("Should use fs.open()", function () {
+  //   fs.open(file1, "r", (err, fd) => {
+  //     if (err) {
+  //       if (err.code === "ENOENT") {
+  //         console.error("myfile does not exist");
+  //         return;
+  //       }
 
-        throw err;
-      }
+  //       throw err;
+  //     }
 
-      try {
-        console.log("Runs here");
-        console.log(fd);
-      } finally {
-        fs.close(fd, (err) => {
-          if (err) throw err;
-        });
-      }
+  //     try {
+  //       console.log("Runs here");
+  //       console.log(fd);
+  //     } finally {
+  //       fs.close(fd, (err) => {
+  //         if (err) throw err;
+  //       });
+  //     }
+  //   });
+  // });
+  it.skip("Should use fs.readfile()", function () {
+    fs.readFile(file1, "utf8", (err, data) => {
+      if (err) throw err;
+      expect(data).to.equal(fileContent);
     });
   });
 
-  it.skip("Should use fs.write()", function () {
+  it("Should use fs.write()", function () {
     fs.writeFile(file1, "write to file " + new Date(), (err) => {
       if (err) throw err;
       console.log("The file has been saved!");
     });
+  });
+  afterEach(function () {
+    if (fs.existsSync(file1)) {
+      fs.unlink(file1, function (err) {
+        if (err) throw err;
+        console.log(`${file1} deleted!`);
+      });
+    }
   });
 });
