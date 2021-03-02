@@ -56,7 +56,6 @@ describe("File System", function () {
   const currentFolder = process.cwd();
   const file1 = currentFolder + "/test-folder/fs_test_file.txt";
   const file2 = currentFolder + "/test-folder/fs_test_file1.txt";
-  console.log("P0", currentFolder);
 
   beforeEach(function (done) {
     fs.appendFile(file1, fileContent, function (err) {
