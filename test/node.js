@@ -49,11 +49,8 @@ describe("Path", function () {
 });
 
 describe("File System", function () {
-  const appendAsync = promisify(fs.appendFile);
   const unlinkAsync = promisify(fs.unlink);
   const renameAsync = promisify(fs.rename);
-  const readAsync = promisify(fs.readFile);
-  const writeAsync = promisify(fs.writeFile);
 
   const fileContent = "Hello content!";
   const currentFolder = process.cwd();
@@ -116,13 +113,15 @@ describe("File System", function () {
     });
   });
 
-  it("Should use fs.write()", async function () {
-    await writeAsync(file1, "write to file " + new Date());
-    console.log("The file has been saved!");
-    // fs.readFile(file1, "utf8", (err, data) => {
-    //   if (err) return done(err);
-    //   expect(data).to.contains("write to file");
-    //   done();
-    // });
+  it("Should use fs.write()", function (done) {
+    fs.writeFile(file1, "write to file " + new Date(), (err) => {
+      if (err) return done(err);
+      console.log("The file has been saved!");
+    });
+    fs.readFile(file1, "utf8", (err, data) => {
+      if (err) return done(err);
+      expect(data).to.contains("write to file");
+      done();
+    });
   });
 });
