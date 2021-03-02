@@ -1,9 +1,9 @@
 import { expect } from "chai";
-import { isArguments } from "lodash";
-let fs = require("fs");
-const os = require("os");
-const path = require("path");
-const process = require("process");
+import fs from "fs";
+import os from "os";
+import path from "path";
+import process from "process";
+import { promisify } from "util";
 
 describe("Errors", function () {
   it("Should return error", function () {
@@ -49,33 +49,46 @@ describe("Path", function () {
 });
 
 describe("File System", function () {
+  const appendAsync = promisify(fs.appendFile);
+  const unlinkAsync = promisify(fs.unlink);
+  const renameAsync = promisify(fs.rename);
+  const readAsync = promisify(fs.readFile);
+  const writeAsync = promisify(fs.writeFile);
+
   const fileContent = "Hello content!";
   const currentFolder = process.cwd();
   const file1 = currentFolder + "/test-folder/fs_test_file.txt";
-  const file2 =
-    "/Users/tongzhang/lambda/sandbox-javascript-node/test-folder/fs_test_file1.txt";
-  beforeEach(function () {
+  const file2 = currentFolder + "/test-folder/fs_test_file1.txt";
+  console.log("P0", currentFolder);
+
+  beforeEach(function (done) {
     fs.appendFile(file1, fileContent, function (err) {
-      if (err) throw err;
+      if (err) return done(err);
       console.log("Saved!");
+      done();
     });
   });
-  it("Should use fs.rename()", function () {
+
+  afterEach(async function () {
+    if (fs.existsSync(file1)) {
+      await unlinkAsync(file1);
+      console.log(`${file1} deleted!`);
+    }
+  });
+
+  it("Should use fs.rename()", async function () {
     if (!fs.existsSync(file1)) {
       throw new Error(`File ${file1} does not exist.`);
     }
 
-    fs.rename(file1, file2, (err) => {
-      if (err) throw err;
-      console.log("Renaming completed.");
-    });
-    fs.unlink(file2, function (err) {
-      if (err) throw err;
-      console.log("file2 deleted!");
-    });
+    await renameAsync(file1, file2);
+    console.log("Renaming completed.");
+
+    await unlinkAsync(file2);
+    console.log("file2 deleted!");
   });
 
-  it("Should use fs.Dir()", function () {
+  it("Should use fs.Dir()", async function () {
     async function print(path) {
       const dir = await fs.promises.opendir(path);
       for await (const dirent of dir) {
@@ -95,25 +108,21 @@ describe("File System", function () {
     }
   });
 
-  it("Should use fs.readfile()", function () {
+  it("Should use fs.readfile()", function (done) {
     fs.readFile(file1, "utf8", (err, data) => {
-      if (err) throw err;
+      if (err) return done(err);
       expect(data).to.equal(fileContent);
+      done();
     });
   });
 
-  it("Should use fs.write()", function () {
-    fs.writeFile(file1, "write to file " + new Date(), (err) => {
-      if (err) throw err;
-      console.log("The file has been saved!");
-    });
-  });
-  afterEach(function () {
-    if (fs.existsSync(file1)) {
-      fs.unlink(file1, function (err) {
-        if (err) throw err;
-        console.log(`${file1} deleted!`);
-      });
-    }
+  it("Should use fs.write()", async function () {
+    await writeAsync(file1, "write to file " + new Date());
+    console.log("The file has been saved!");
+    // fs.readFile(file1, "utf8", (err, data) => {
+    //   if (err) return done(err);
+    //   expect(data).to.contains("write to file");
+    //   done();
+    // });
   });
 });
