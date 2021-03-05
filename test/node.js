@@ -51,11 +51,18 @@ describe("Path", function () {
 describe("File System", function () {
   const unlinkAsync = promisify(fs.unlink);
   const renameAsync = promisify(fs.rename);
+  const statAsync = promisify(fs.stat);
+  const writeAsync = promisify(fs.write);
+  const readAsync = promisify(fs.read);
 
   const fileContent = "Hello content!";
-  const currentFolder = process.cwd();
-  const file1 = currentFolder + "/test-folder/fs_test_file.txt";
-  const file2 = currentFolder + "/test-folder/fs_test_file1.txt";
+  const workingDirectory1 = process.cwd();
+  const workingDirectory2 = __dirname;
+  console.log("working directory 1", workingDirectory1);
+  console.log("working directory 2", workingDirectory2);
+
+  const file1 = path.join(workingDirectory1, "test/fs_test_file.txt");
+  const file2 = path.join(workingDirectory2, "/fs_test_file1.txt");
 
   beforeEach(function (done) {
     fs.appendFile(file1, fileContent, function (err) {
@@ -87,40 +94,35 @@ describe("File System", function () {
   it("Should use fs.Dir()", async function () {
     async function print(path) {
       const dir = await fs.promises.opendir(path);
-      for await (const dirent of dir) {
+      for (const dirent of dir) {
         console.log(dirent.name);
       }
     }
     print("./").catch(console.error);
   });
 
-  it("Should use fs.Stats()", function () {
-    const pathsToCheck = [file1, file2];
+  it("Should use fs.stat()", async function () {
+    const pathsToCheck = [file1];
 
     for (let i = 0; i < pathsToCheck.length; i++) {
-      fs.stat(pathsToCheck[i], function (err, stats) {
-        console.log(stats);
-      });
+      const stats = await statAsync(pathsToCheck[i]);
+      console.log(stats);
     }
-  });
 
-  it("Should use fs.readfile()", function (done) {
-    fs.readFile(file1, "utf8", (err, data) => {
-      if (err) return done(err);
-      expect(data).to.equal(fileContent);
-      done();
+    it("Should use fs.readfile()", function (done) {
+      fs.readFile(file1, "utf8", (err, data) => {
+        if (err) return done(err);
+        expect(data).to.equal(fileContent);
+        done();
+      });
     });
-  });
 
-  it("Should use fs.write()", function (done) {
-    fs.writeFile(file1, "write to file " + new Date(), (err) => {
-      if (err) return done(err);
-      console.log("The file has been saved!");
-    });
-    fs.readFile(file1, "utf8", (err, data) => {
-      if (err) return done(err);
-      expect(data).to.contains("write to file");
-      done();
+    it("Should use fs.write()", async function () {
+      writeAsync(file1, "write to file " + new Date()).then(
+        readAsync(file1, "utf8", (data) => {
+          expect(data).to.contains("write to file");
+        })
+      );
     });
   });
 });
