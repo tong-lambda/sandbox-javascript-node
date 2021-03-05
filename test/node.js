@@ -46,6 +46,14 @@ describe("Path", function () {
     expect(path.isAbsolute("qux/")).to.equal(false);
     expect(path.isAbsolute(".")).to.equal(false);
   });
+  it("Should use path.join()", function () {
+    expect(path.join("/foo", "bar", "baz/asdf", "quux", "..")).to.equal(
+      "/foo/bar/baz/asdf"
+    );
+    expect(() => path.join("foo", {}, "bar")).to.throw(
+      'The "path" argument must be of type string. Received an instance of Object'
+    );
+  });
 });
 
 describe("File System", function () {
