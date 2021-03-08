@@ -1,6 +1,6 @@
 import { expect } from "chai";
 
-describe.only("Process", function () {
+describe("Process", function () {
   it("Should use process.arch", function () {
     expect(process.arch).to.equal("x64");
   });
