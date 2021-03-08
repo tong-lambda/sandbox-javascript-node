@@ -23,11 +23,31 @@ describe("Util", function () {
 });
 
 describe("Timer", function () {
-  it("Should use setTimeOut", function () {
-    const setTimeoutPromise = util.promisify(setTimeout);
+  it("Should use setTimeOut", function (done) {
     const start = Date.now();
-    setTimeoutPromise(40, "foobar").then((value) => {
+    setTimeout(() => {
+      console.log(Date.now() - start);
+      done();
+    }, 1000);
+  });
+
+  it("Should use setTimeOut", function () {
+    const start = Date.now();
+    const setTimeOutPromise = new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+    setTimeOutPromise.then((value) => {
       console.log(Date.now() - start);
     });
+    return setTimeOutPromise;
+  });
+
+  it("Should use setTimeOut", async function () {
+    const start = Date.now();
+    const setTimeOutPromise = new Promise((resolve) => {
+      setTimeout(resolve, 1000);
+    });
+    await setTimeOutPromise;
+    console.log(Date.now() - start);
   });
 });
