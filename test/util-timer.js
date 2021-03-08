@@ -22,7 +22,7 @@ describe("Util", function () {
   });
 });
 
-describe.only("Timer", function () {
+describe("Timer", function () {
   it("Should use setTimeOut", function () {
     const setTimeoutPromise = util.promisify(setTimeout);
     const start = Date.now();
