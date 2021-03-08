@@ -106,7 +106,7 @@ describe("File System", function () {
         console.log(dirent.name);
       }
     }
-    print("./").catch(console.error);
+    await print("./").catch(console.error);
   });
 
   it("Should use fs.stat()", async function () {
