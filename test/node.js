@@ -116,6 +116,7 @@ describe("File System", function () {
       const stats = await statAsync(pathsToCheck[i]);
       console.log(stats);
     }
+  });
 
     it("Should use fs.readfile()", function (done) {
       fs.readFile(file1, "utf8", (err, data) => {
@@ -132,5 +133,4 @@ describe("File System", function () {
         })
       );
     });
-  });
 });
