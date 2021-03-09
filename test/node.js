@@ -60,8 +60,8 @@ describe("File System", function () {
   const unlinkAsync = promisify(fs.unlink);
   const renameAsync = promisify(fs.rename);
   const statAsync = promisify(fs.stat);
-  const writeAsync = promisify(fs.write);
-  const readAsync = promisify(fs.read);
+  const writeFileAsync = promisify(fs.writeFile);
+  const readFileAsync = promisify(fs.readFile);
 
   const fileContent = "Hello content!";
   const workingDirectory1 = process.cwd();
@@ -118,19 +118,17 @@ describe("File System", function () {
     }
   });
 
-    it("Should use fs.readfile()", function (done) {
-      fs.readFile(file1, "utf8", (err, data) => {
-        if (err) return done(err);
-        expect(data).to.equal(fileContent);
-        done();
-      });
+  it("Should use fs.readfile()", function (done) {
+    fs.readFile(file1, "utf8", (err, data) => {
+      if (err) return done(err);
+      expect(data).to.equal(fileContent);
+      done();
     });
+  });
 
-    it("Should use fs.write()", async function () {
-      writeAsync(file1, "write to file " + new Date()).then(
-        readAsync(file1, "utf8", (data) => {
-          expect(data).to.contains("write to file");
-        })
-      );
-    });
+  it("Should use fs.write()", async function () {
+    await writeFileAsync(file1, "write to file " + new Date());
+    const data = await readFileAsync(file1, "utf8");
+    expect(data).to.contains("write to file");
+  });
 });
